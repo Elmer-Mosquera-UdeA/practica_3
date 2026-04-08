@@ -33,7 +33,8 @@ string descomprimirRLE(string comprimido);
 void ejercicio_1() {
     string entrada;
     cout << "Ingrese una cadena de texto: ";
-    getline(cin >> std::ws, entrada); // ws elimina espacios en blanco previos
+    cin.ignore(1000, '\n');
+    getline(cin, entrada);
 
     // 1. Generar versión comprimida
     string comprimido = comprimirRLE(entrada);
@@ -68,7 +69,7 @@ string comprimirRLE(string texto) {
     return comprimido;
 }
 
-// Función para comprimir
+// Función para descomprimir
 string descomprimirRLE(string comprimido) {
     string descomprimido = "";
     string numStr = "";
@@ -85,4 +86,3 @@ string descomprimirRLE(string comprimido) {
     }
     return descomprimido;
 }
-
