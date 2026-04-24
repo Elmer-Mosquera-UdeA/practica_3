@@ -1,6 +1,6 @@
 #include "enlace.h"
 #include <iostream>
-#include <conio.h>
+#include <limits>
 
 using std::cout;
 using std::cin;
@@ -8,6 +8,7 @@ using std::endl;
 
 void imprimirMenu();
 void ejecutar_ejercicio(int entrada);
+void pausarEjecucion();
 void salir();
 
 int main(){
@@ -15,9 +16,7 @@ int main(){
 
     do {
         if (entrada != 0){
-            cout << "Presione cualquier tecla para continuar..." << endl;
-            _getch();
-            system("cls");
+            pausarEjecucion();
         }
         imprimirMenu();
         cin >> entrada;
@@ -46,10 +45,6 @@ void ejecutar_ejercicio(int entrada){
         ejercicio_4();
         cout << "\033[32mEjercicio 4 ejecutado.\033[0m" << endl;
         break;
-    case 5:
-        ejercicio_5();
-        cout << "\033[32mEjercicio 5 ejecutado.\033[0m" << endl;
-        break;
     case 0:
         salir();
         break;
@@ -62,7 +57,7 @@ void ejecutar_ejercicio(int entrada){
 void imprimirMenu(){
     cout << "|-----------------------------------|" << endl;
     cout << "|         Ingrese un numero         |" << endl;
-    cout << "| 1 - 5 para ejecutar un ejercicio  |" << endl;
+    cout << "| 1 - 4 para ejecutar un ejercicio  |" << endl;
     cout << "|            0 para salir           |" << endl;
     cout << "|-----------------------------------|" << endl;
     cout << "=> ";
@@ -71,4 +66,15 @@ void imprimirMenu(){
 void salir() {
     cout << "Saliendo..." << endl;
     exit(0);
+}
+
+void pausarEjecucion(){
+    std::cout << "Presiona Enter para continuar...";
+
+    // Limpia cualquier residuo en el búfer de entrada
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    // Espera a que el usuario presione Enter
+    std::cin.get();
 }
